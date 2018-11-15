@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PizzaService } from './services/pizza.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'webApp';
+  constructor(private pizza: PizzaService) {
+    pizza.getAllPizza().subscribe(res=>{
+      console.log(res);
+    })
+  }
+
 }

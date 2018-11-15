@@ -1,0 +1,11 @@
+<h1 style="text-align: center">CFK PIZZA MENU</h1>
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let pizza of pizzas">
+
+    <img [src]="pizza.picture" class="img-responsive pizza" style="height:150px;width:150px;border-radius: 50%;    display: inline;" alt="Image">
+    <span class="text-primary pizza">{{pizza.ingredient[0]}}</span>
+
+    <span class="badge pizza" style="padding: 4px;font-size:32px">{{pizza.price.toFixed(3)}}</span>
+
+  </li>
+</ul>

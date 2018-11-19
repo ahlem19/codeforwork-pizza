@@ -1,11 +1,28 @@
-<h1 style="text-align: center">CFK PIZZA MENU</h1>
-<ul class="list-group">
-  <li class="list-group-item" *ngFor="let pizza of pizzas">
+<div class="container">
 
-    <img [src]="pizza.picture" class="img-responsive pizza" style="height:150px;width:150px;border-radius: 50%;    display: inline;" alt="Image">
-    <span class="text-primary pizza">{{pizza.ingredient[0]}}</span>
+  <h1 style="text-align: center">CFK PIZZA MENU
+    <button type="button" mdbBtn color="primary" mdbWavesEffect class="float-right " style="border-radius: 50%"><span class="fa fa-plus"></span></button>
+  </h1>
+  <table mdbTable>
+    <thead>
+      <tr>
+        <th scope="col">Image</th>
+        <th scope="col">Label</th>
+        <th scope="col">ingredient</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr mdbTableCol *ngFor="let pizza of pizzas">
+        <th scope="row"> <img [src]="pizza.picture" class="img-responsive pizza" style="height:150px;width:150px;border-radius: 50%;    display: inline;"
+            alt="Image">
+        </th>
+        <th scope="row">{{pizza.label}}</th>
+        <th scope="row">{{pizza.ingredient[0]}}</th>
+        <th scope="row">{{pizza.price.toFixed(3)}}</th>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-    <span class="badge pizza" style="padding: 4px;font-size:32px">{{pizza.price.toFixed(3)}}</span>
-
-  </li>
-</ul>
+<app-detail-pizza></app-detail-pizza>

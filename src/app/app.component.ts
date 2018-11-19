@@ -8,10 +8,6 @@ import { PizzaService } from './services/pizza.service';
 })
 export class AppComponent {
   title = 'webApp';
-  constructor(private pizza: PizzaService) {
-    pizza.getAllPizza().subscribe(res=>{
-      console.log(res);
-    })
-  }
+  
 
 }

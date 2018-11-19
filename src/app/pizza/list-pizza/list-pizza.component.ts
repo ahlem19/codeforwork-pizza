@@ -8,11 +8,11 @@ import { PizzaService } from 'src/app/services/pizza.service';
 })
 export class ListPizzaComponent implements OnInit {
   pizzas:any;
-  constructor(private pizza: PizzaService) {
+  constructor(private pizzaService: PizzaService) {
     
   }
   ngOnInit() {
-    this.pizza.getAllPizza().subscribe(res=>{
+    this.pizzaService.getAllPizza().subscribe(res=>{
       this.pizzas=res;
     })
   }

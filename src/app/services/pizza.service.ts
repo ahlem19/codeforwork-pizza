@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as url from '../config.js';
+import { IPizza } from '../models/pizza.js';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,13 +16,13 @@ export class PizzaService {
     return this._http.get( `${url.local.rootUrl}pizza`);
   }
   
-  addPizza() {
-    //TODO:to implement xhr
+  addPizza(_pizza:{pizza:IPizza}) {
+    return this._http.post(`${url.local.rootUrl}pizza`,_pizza,{});
 
   }
 
-  deletePizza() {
-    //TODO:to implement xhr
+  deletePizza(id:string) {
+    return this._http.delete(`${url.local.rootUrl}pizza/${id}`)
   }
 
   updatePizza() {

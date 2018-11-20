@@ -13,6 +13,8 @@ import { MaterialModule } from './shared/material/material.module';
 import { MainMenuComponent } from './navigation/main-menu/main-menu.component';
 import { FooterComponent } from './navigation/footer/footer.component';
 import { DetailPizzaComponent } from './pizza/detail-pizza/detail-pizza.component';
+import { ReactiveFormsModule, ControlContainer, FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +29,8 @@ import { DetailPizzaComponent } from './pizza/detail-pizza/detail-pizza.componen
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
+    ReactiveFormsModule,
+    FormsModule,
     MDBBootstrapModule.forRoot()
   ],
   providers: [PizzaService],

@@ -20,7 +20,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr mdbTableCol *ngFor="let pizza of pizzas" (dblclick)="updatePizza()">
+      <tr mdbTableCol *ngFor="let pizza of pizzas" (dblclick)="updatePizza(pizza)">
         <th scope="row"> <img [src]="pizza.picture" class="img-responsive pizza" 
             alt="Image">
         </th>

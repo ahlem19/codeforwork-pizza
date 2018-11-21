@@ -5,7 +5,7 @@
     <div class="modal-content">
       <!--Header-->
       <div class="modal-header text-center">
-        <h4 class="modal-title white-text w-100 font-weight-bold py-2">Subscribe</h4>
+        <h4 class="modal-title white-text w-100 font-weight-bold py-2">{{is|json}}{{!isUpdate?'Add':'update'}} Pizza</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
           <span aria-hidden="true" class="white-text">&times;</span>
         </button>
@@ -17,8 +17,8 @@
         <div class="md-form mb-5">
           <input type="text" formControlName="label"
           id="form3" class="form-control" 
-          mdbInputDirective  >
-          <label data-error="wrong" data-success="right" for="form3" required>Pizza Label</label>
+          mdbInputDirective required >
+          <label data-error="wrong" data-success="right" for="form3" >Pizza Label</label>
         </div>
 
         <div class="md-form">
@@ -45,7 +45,7 @@
            outline="true" 
            class="waves-effect" 
            mdbWavesEffect
-           (click)="addPizza()">Save
+           (click)="!isUpdate?addPizza():updatePizza()">{{!isUpdate?'Save':'update'}}
 
           <i class="fa fa-paper-plane-o ml-1"></i>
         </a>

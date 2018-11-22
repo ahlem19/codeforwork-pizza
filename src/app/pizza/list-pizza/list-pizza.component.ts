@@ -9,6 +9,7 @@ import { DetailPizzaComponent } from '../detail-pizza/detail-pizza.component';
 })
 export class ListPizzaComponent implements OnInit {
  
+   p: number = 1 ;
   @ViewChild('detail') 
   private detailPizzaComponent:DetailPizzaComponent;
   
@@ -26,14 +27,11 @@ export class ListPizzaComponent implements OnInit {
   showDetail(){
     this.detailPizzaComponent.frame.show();
   }
-  updatePizza(){
-    //TODO :update pizza
-    alert("test");
-  }
+ 
   deletePizza(id:string){
     this.pizzaService.deletePizza(id)
     .subscribe(
-      (response:Response)=>{alert(response);
+      (response:Response)=>{
         this.pizzaService.getAllPizza().subscribe(res=>{
           this.pizzas=res;
         });

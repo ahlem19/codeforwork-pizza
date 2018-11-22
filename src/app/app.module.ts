@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -9,6 +10,7 @@ import { PizzaService } from './services/pizza.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import 'hammerjs';
+import {NgxPaginationModule} from 'ngx-pagination';
 import { MaterialModule } from './shared/material/material.module';
 import { MainMenuComponent } from './navigation/main-menu/main-menu.component';
 import { FooterComponent } from './navigation/footer/footer.component';
@@ -31,6 +33,7 @@ import { ReactiveFormsModule, ControlContainer, FormsModule } from '@angular/for
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
+    NgxPaginationModule,
     MDBBootstrapModule.forRoot()
   ],
   providers: [PizzaService],

@@ -25,9 +25,9 @@ export class PizzaService {
     return this._http.delete(`${url.local.rootUrl}pizza/${id}`)
   }
 
-  updatePizza() {
-    //TODO:to implement xhr
-  }
+  updatePizza(id:string,_pizza:{pizza:IPizza}) {
+return this._http.put(`${url.local.rootUrl}pizza/${id}`,_pizza)  
+}
 
   getPizzaById() {
     //TODO:to implement xhr

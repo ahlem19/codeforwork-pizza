@@ -18,21 +18,21 @@
           <input type="text" formControlName="label"
           id="form3" class="form-control" 
           mdbInputDirective  >
-          <label data-error="wrong" data-success="right" for="form3" required>Pizza Label</label>
+          <label data-error="wrong" data-success="right" for="form3" required>Label</label>
         </div>
 
         <div class="md-form">
           <input type="text" name="ingredient" id="form2" 
           class="form-control" mdbInputDirective 
           formControlName="ingredient">
-          <label data-error="wrong" data-success="right" for="form2">Ingredient</label>
+          <label data-error="wrong" data-success="right" for="form2">ingredient</label>
         </div>
 
         <div class="md-form">
             <input type="text" id="form4" 
             class="form-control" name="price" mdbInputDirective 
             formControlName="price">
-            <label data-error="wrong" data-success="right" for="form4">Price</label>
+            <label data-error="wrong" data-success="right" for="form4">price</label>
           </div>
       </div>
 
@@ -45,7 +45,7 @@
            outline="true" 
            class="waves-effect" 
            mdbWavesEffect
-           (click)="addPizza()">Save
+           (click)="x?addPizza():savePizza()">Save
 
           <i class="fa fa-paper-plane-o ml-1"></i>
         </a>

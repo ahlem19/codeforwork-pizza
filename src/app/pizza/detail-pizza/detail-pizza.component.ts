@@ -19,25 +19,46 @@ export class DetailPizzaComponent implements OnInit {
     price: new FormControl('', Validators.required),
   });
 
-  constructor(private _pizzaService: PizzaService,private route:Router) { }
+  constructor(private _pizzaService: PizzaService, private route: Router) { }
 
   ngOnInit() {
 
   }
   addPizza() {
     //console.log(this.pizzaForm.value);
-    this._pizzaService.addPizza({pizza:this.pizzaForm.value})
-    .subscribe(
-      (response :Response)=>{
-        alert(response.toString());
-        this.route.navigate(["pizza"])
-      },
-      (error:any)=>alert("Netwwork or server Error")),
-      (complete)=>console.log('XHR request is completed')
+    this._pizzaService.addPizza({ pizza: this.pizzaForm.value })
+      .subscribe(
+        (response: Response) => {
+          this.route.navigate(["pizza"])
+        },
+        (error: any) => alert("Netwwork or server Error")),
+      (complete) => console.log('XHR request is completed')
 
     this.frame.hide();
   }
 
+  x: boolean = true;
+  private id: string;
+  public editPizza(id: string, label: string, ingredient: string, price: number) {
+    console.log(id)
+    this.frame.show();
+    this.pizzaForm.setValue({ label: label, ingredient: ingredient, price: price });
+    this.x = false;
+    this.id = id ;
+
+  }
+  savePizza() {
+    this._pizzaService.updatePizza(this.id, { pizza: this.pizzaForm.value })
+      .subscribe(
+        (response: Response) => {
+          this.route.navigate(["pizza"])
+        },
+        (error: any) => alert("Netwwork or server Error")),
+      (complete) => console.log('XHR request is completed')
+
+    this.frame.hide();
+
+  }
 
 }
 

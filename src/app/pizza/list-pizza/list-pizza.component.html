@@ -17,25 +17,34 @@
         <th scope="col">ingredient</th>
         <th scope="col">Price</th>
         <th scope="col"></th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
-      <tr mdbTableCol *ngFor="let pizza of pizzas" (dblclick)="updatePizza()">
+      <tr mdbTableCol *ngFor="let pizza of pizzas | paginate: { itemsPerPage: 3, currentPage: p }; let i = index" (dblclick)="updatePizza()">
         <th scope="row"> <img [src]="pizza.picture" class="img-responsive pizza" 
             alt="Image">
         </th>
-        <th scope="row">{{pizza.label}}<code>{{pizza._id}}</code></th>
+        <th scope="row">{{pizza.label}}</th>
         <th scope="row">{{pizza.ingredient[0]}}</th>
         <th scope="row">{{pizza.price.toFixed(3)}}</th>
         <th scope="row">
           <span 
             class="fa fa-trash text-danger"
-            (click)="deletePizza(pizza._id)"></span>
+            (click)="deletePizza(pizza._id) " routerLink="/reload"></span>
           
           </th>
+          <th scope="row">
+            <span 
+              class="fa fa-edit"
+             (click)="detail.editPizza(pizza._id,pizza.label,pizza.ingredient,pizza.price)" routerLink="/reload" ></span>
+            
+            </th>
       </tr>
     </tbody>
   </table>
+  <pagination-controls align="center" (pageChange)="p = $event"></pagination-controls>
+
 </div>
 
 <app-detail-pizza #detail></app-detail-pizza>

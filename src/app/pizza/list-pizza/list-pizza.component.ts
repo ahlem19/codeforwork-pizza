@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { PizzaService } from 'src/app/services/pizza.service';
-import { DetailPizzaComponent } from '../detail-pizza/detail-pizza.component';
+import { AddPizzaComponent } from '../add-pizza/add-pizza.component';
+import { UpdatePizzaComponent } from '../update-pizza/update-pizza.component';
 
 @Component({
   selector: 'app-list-pizza',
@@ -10,12 +11,13 @@ import { DetailPizzaComponent } from '../detail-pizza/detail-pizza.component';
 export class ListPizzaComponent implements OnInit {
  
    p: number = 1 ;
-  @ViewChild('detail') 
-  private detailPizzaComponent:DetailPizzaComponent;
+  @ViewChild('adddetail') 
+  private addPizzaComponent:AddPizzaComponent;
+  @ViewChild('updatedetail') 
+  private updatePizzaComponent:UpdatePizzaComponent;
   
   pizzas:any;
   constructor(private pizzaService: PizzaService) {
-    
   }
 
   ngOnInit() {
@@ -24,8 +26,12 @@ export class ListPizzaComponent implements OnInit {
     });
   }
 
-  showDetail(){
-    this.detailPizzaComponent.frame.show();
+  showDetailForAdd(){
+    this.addPizzaComponent.frame.show();
+  }
+
+  showDetailForUpdate(){
+    this.updatePizzaComponent.frame.show();
   }
  
   deletePizza(id:string){

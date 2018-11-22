@@ -1,35 +1,32 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { FormControl, Validators, FormGroup } from '@angular/forms';
-import { MDBModalRef } from 'angular-bootstrap-md';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { PizzaService } from 'src/app/services/pizza.service';
-import { Route, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-detail-pizza',
-  templateUrl: './detail-pizza.component.html',
-  styleUrls: ['./detail-pizza.component.scss'],
-  // stratgie:onPush
+  selector: 'app-update-pizza',
+  templateUrl: './update-pizza.component.html',
+  styleUrls: ['./update-pizza.component.scss']
 })
-export class DetailPizzaComponent implements OnInit {
-  @ViewChild('frame')
-  public frame;
+export class UpdatePizzaComponent implements OnInit {
+  @ViewChild('frame') public frame;
   pizzaForm = new FormGroup({
     label: new FormControl('', Validators.required),
     ingredient: new FormControl('', Validators.required),
     price: new FormControl('', Validators.required),
   });
 
-  constructor(private _pizzaService: PizzaService, private route: Router) { }
+  constructor(private _pizzaService: PizzaService) { }
 
   ngOnInit() {
 
   }
-  addPizza() {
-    //console.log(this.pizzaForm.value);
+
+
+updatePizza() {
     this._pizzaService.addPizza({ pizza: this.pizzaForm.value })
       .subscribe(
         (response: Response) => {
-          this.route.navigate(["pizza"])
+           console.log('update ok')
         },
         (error: any) => alert("Netwwork or server Error")),
       (complete) => console.log('XHR request is completed')
@@ -60,6 +57,5 @@ export class DetailPizzaComponent implements OnInit {
 
   }
 
-}
 
-//TODO : Add forms validators 
+}

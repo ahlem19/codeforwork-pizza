@@ -12,7 +12,7 @@ export class PizzaService {
   }
 
   getAllPizza() {
-    //TODO:to implement xhr
+
     return this._http.get( `${url.local.rootUrl}pizza`);
   }
   

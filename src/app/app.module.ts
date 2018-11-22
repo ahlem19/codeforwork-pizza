@@ -1,19 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
 import { ListPizzaComponent } from './pizza/list-pizza/list-pizza.component';
 import { PizzaService } from './services/pizza.service';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import 'hammerjs';
 import { MaterialModule } from './shared/material/material.module';
 import { MainMenuComponent } from './navigation/main-menu/main-menu.component';
 import { FooterComponent } from './navigation/footer/footer.component';
 import { DetailPizzaComponent } from './pizza/detail-pizza/detail-pizza.component';
-import { ReactiveFormsModule, ControlContainer, FormsModule } from '@angular/forms';
+
+import 'hammerjs';
 
 @NgModule({
   declarations: [
@@ -25,12 +26,12 @@ import { ReactiveFormsModule, ControlContainer, FormsModule } from '@angular/for
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ReactiveFormsModule,
-    FormsModule,
+    AppRoutingModule,
     MDBBootstrapModule.forRoot()
   ],
   providers: [PizzaService],

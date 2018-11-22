@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { PizzaService } from './services/pizza.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +7,5 @@ import { PizzaService } from './services/pizza.service';
 })
 export class AppComponent {
   title = 'webApp';
-  
 
 }

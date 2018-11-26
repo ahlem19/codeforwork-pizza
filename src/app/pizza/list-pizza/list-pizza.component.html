@@ -1,31 +1,31 @@
 <div class="container">
     <h3 style="text-align: center">
         CFK Pizza MENU
-        <mat-icon [matBadge]="pizzas.length" matBadgeOverlap="false"></mat-icon>
+        <mat-icon [matBadge]="(_pizzaStore$ | async).counter" matBadgeOverlap="false"></mat-icon>
         <button type="button" mdbBtn color="primary" mdbWavesEffect class="float-right" style="border-radius: 50%" (click)="showAddForm()">
       <span class="fa fa-plus"></span></button>
     </h3>
-    <table mdbTable *ngIf="pizzas$ | async as pizzas">
+    <table mdbTable *ngIf="(_pizzaStore$ | async)._pizzas as tmplPizzas">
         <thead>
             <tr>
                 <th scope="col">Image</th>
                 <th scope="col">Label</th>
-                <th scope="col">ingredient</th>
+                <th scope="col">Ingredients</th>
                 <th scope="col">Price</th>
                 <th scope="col"></th>
                 <th scope="col"></th>
             </tr>
         </thead>
-        <div *ngIf="!pizzas" class="spinner"><img [src]="'./assets/loader.gif'" alt="loader">Loding ...</div>
+        <div *ngIf="!tmplPizzas" class="spinner"><img [src]="'./assets/loader.gif'" alt="loader">Loding ...</div>
         <tbody>
-            <tr mdbTableCol *ngFor="let pizza of pizzas  | paginate: { itemsPerPage: 10, currentPage: p } ; let i = index ">
+            <tr mdbTableCol *ngFor="let pizza of tmplPizzas  | paginate: { itemsPerPage: 10, currentPage: p } ; let i = index ">
 
                 <th scope="row">
                     <img [src]="pizza?.picture" class="img-responsive pizza" alt="pizza-picture">
                 </th>
-                <th scope="row">{{pizza?.label}}</th>
-                <th scope="row">{{pizza?.ingredients[0]}}</th>
-                <th scope="row">{{pizza?.price.toFixed(3)}}</th>
+                <th scope="row">{{pizza.label}}</th>
+                <th scope="row">{{pizza.ingredients}}</th>
+                <th scope="row">{{pizza.price | currency : 'TND'}}</th>
                 <th scope="row">
                     <span class="fa fa-trash text-danger" (click)="deletePizza(pizza._id)"></span>
 

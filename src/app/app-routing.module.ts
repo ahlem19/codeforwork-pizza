@@ -4,13 +4,13 @@ import { ListPizzaComponent } from './pizza/list-pizza/list-pizza.component';
 
 const routes: Routes = [
   {
-    path:"pizza",
-    component:ListPizzaComponent
+    path: 'pizza',
+    component: ListPizzaComponent
   },
 
   {
-    path:"**",
-    component:ListPizzaComponent
+    path: '**',
+    redirectTo: 'pizza'
   }
 ];
 

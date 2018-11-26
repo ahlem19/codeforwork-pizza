@@ -1,51 +1,45 @@
 <div class="container">
-
-  <h1 style="text-align: center">CFK PIZZA MENU
-    <button type="button" 
-      mdbBtn color="primary" 
-      mdbWavesEffect class="float-right" 
-      style="border-radius: 50%"
-      (click)="showDetailForAdd()"
-    >
+    <h3 style="text-align: center">
+        CFK Pizza MENU
+        <mat-icon [matBadge]="pizzas.length" matBadgeOverlap="false"></mat-icon>
+        <button type="button" mdbBtn color="primary" mdbWavesEffect class="float-right" style="border-radius: 50%" (click)="showAddForm()">
       <span class="fa fa-plus"></span></button>
-  </h1>
-  <table mdbTable>
-    <thead>
-      <tr>
-        <th scope="col">Image</th>
-        <th scope="col">Label</th>
-        <th scope="col">ingredient</th>
-        <th scope="col">Price</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr mdbTableCol *ngFor="let pizza of pizzas | paginate: { itemsPerPage: 3, currentPage: p }; let i = index" (dblclick)="updatePizza()">
-        <th scope="row"> <img [src]="pizza.picture" class="img-responsive pizza" 
-            alt="Image">
-        </th>
-        <th scope="row">{{pizza.label}}</th>
-        <th scope="row">{{pizza.ingredient[0]}}</th>
-        <th scope="row">{{pizza.price.toFixed(3)}}</th>
-        <th scope="row">
-          <span 
-            class="fa fa-trash text-danger"
-            (click)="deletePizza(pizza._id) " routerLink="/reload"></span>
-          
-          </th>
-          <th scope="row">
-            <span 
-              class="fa fa-edit"
-             (click)="showDetailForUpdate()"></span>
-            
-            </th>
-      </tr>
-    </tbody>
-  </table>
-  <pagination-controls align="center" (pageChange)="p = $event"></pagination-controls>
+    </h3>
+    <table mdbTable *ngIf="pizzas$ | async as pizzas">
+        <thead>
+            <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Label</th>
+                <th scope="col">ingredient</th>
+                <th scope="col">Price</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <div *ngIf="!pizzas" class="spinner"><img [src]="'./assets/loader.gif'" alt="loader">Loding ...</div>
+        <tbody>
+            <tr mdbTableCol *ngFor="let pizza of pizzas  | paginate: { itemsPerPage: 10, currentPage: p } ; let i = index ">
+
+                <th scope="row">
+                    <img [src]="pizza?.picture" class="img-responsive pizza" alt="pizza-picture">
+                </th>
+                <th scope="row">{{pizza?.label}}</th>
+                <th scope="row">{{pizza?.ingredients[0]}}</th>
+                <th scope="row">{{pizza?.price.toFixed(3)}}</th>
+                <th scope="row">
+                    <span class="fa fa-trash text-danger" (click)="deletePizza(pizza._id)"></span>
+
+                </th>
+                <th scope="row">
+                    <span class="fa fa-edit" (click)="showUpdateForm(pizza)"></span>
+
+                </th>
+            </tr>
+        </tbody>
+    </table>
+    <pagination-controls align="center" (pageChange)="page = $event"></pagination-controls>
 
 </div>
 
-<app-add-pizza #adddetail></app-add-pizza>
-<app-update-pizza #updatedetail></app-update-pizza>
+<app-add-pizza #adddetail (addPizzaEvent)="savePizza($event)"></app-add-pizza>
+<app-update-pizza #updatedetail (updatePizzaEvent)="saveUpdatedPizza($event)"></app-update-pizza>

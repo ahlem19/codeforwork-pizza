@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
-import { MDBModalRef } from 'angular-bootstrap-md';
 import { PizzaService } from 'src/app/services/pizza.service';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { IPizza } from '../../models/pizza';
 
 @Component({
   selector: 'app-add-pizza',
@@ -10,55 +10,28 @@ import { Route, Router } from '@angular/router';
   styleUrls: ['./add-pizza.component.scss']
 })
 export class AddPizzaComponent implements OnInit {
-  @ViewChild('frame')
-  public frame;
+
+  @Output() addPizzaEvent: EventEmitter<IPizza> = new EventEmitter();
+  @ViewChild('frame') public frame;
+
+  constructor(private _pizzaService: PizzaService, private route: Router) { }
+
   pizzaForm = new FormGroup({
     label: new FormControl('', Validators.required),
     ingredient: new FormControl('', Validators.required),
     price: new FormControl('', Validators.required),
+    picture : new FormControl('http://la-cucina.fr/wp-content/uploads/2014/07/gal1.jpg')
   });
 
-  constructor(private _pizzaService: PizzaService, private route: Router) { }
 
   ngOnInit() {
 
   }
+
   addPizza() {
-    //console.log(this.pizzaForm.value);
-    this._pizzaService.addPizza({ pizza: this.pizzaForm.value })
-      .subscribe(
-        (response: Response) => {
-          this.route.navigate(["pizza"])
-        },
-        (error: any) => alert("Netwwork or server Error")),
-      (complete) => console.log('XHR request is completed')
-
+    this.addPizzaEvent.emit(this.pizzaForm.value);
     this.frame.hide();
   }
-
-  x: boolean = true;
-  private id: string;
-  public editPizza(id: string, label: string, ingredient: string, price: number) {
-    console.log(id)
-    this.frame.show();
-    this.pizzaForm.setValue({ label: label, ingredient: ingredient, price: price });
-    this.x = false;
-    this.id = id ;
-
-  }
-  savePizza() {
-    this._pizzaService.updatePizza(this.id, { pizza: this.pizzaForm.value })
-      .subscribe(
-        (response: Response) => {
-          this.route.navigate(["pizza"])
-        },
-        (error: any) => alert("Netwwork or server Error")),
-      (complete) => console.log('XHR request is completed')
-
-    this.frame.hide();
-
-  }
-
 }
 
-//TODO : Add forms validators 
+// TODO : Add forms validators

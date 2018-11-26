@@ -1,5 +1,5 @@
 export interface IPizza {
-id?: string;
+_id?: string;
 label: string;
 price: number;
 ingredients: string [];

@@ -15,47 +15,28 @@ export class ListPizzaComponent implements OnInit {
   @ViewChild('adddetail') private addPizzaComponent: AddPizzaComponent;
   @ViewChild('updatedetail') private updatePizzaComponent: UpdatePizzaComponent;
 
-  pizzas$: Observable<IPizza[]>;
+  _pizzaStore$: Observable<{_pizzas: IPizza[], counter: number}>;
   pizzaToUpdate: IPizza;
 
-  constructor(
-    private _pizzaService: PizzaService
-    ) {
+  constructor( private _pizzaService: PizzaService) {
   }
 
   ngOnInit() {
-    this.pizzas$ = this._pizzaService.getAllPizza();
+    this._pizzaStore$ = this._pizzaService.getAllPizza();
+    this._pizzaService.loadPizzaFromAPI();
   }
 
 
   savePizza(pizza: IPizza) {
-
-    this._pizzaService.addPizza({ pizza: pizza })
-      .subscribe(
-        (response: any) => {
-          alert(response.message);
-        },
-        (error: any) => alert('Netwwork or Server Error')
-      );
-
+    this._pizzaService.addPizza({ pizza: pizza });
   }
 
   saveUpdatedPizza(pizza: IPizza) {
-    this._pizzaService.updatePizza(pizza._id, { pizza: pizza })
-    .subscribe(
-      (data: any) => alert(data.message),
-      (error: any) => alert('Netwwork or server Error')
-      );
+    this._pizzaService.updatePizza(pizza._id, { pizza: pizza });
   }
 
   deletePizza(id: string) {
-    this._pizzaService.deletePizza(id)
-      .subscribe(
-        (response: any) => {
-          alert(response.message);
-        },
-        error => alert('Network or Server Error')
-      );
+    this._pizzaService.deletePizza(id);
   }
 
 

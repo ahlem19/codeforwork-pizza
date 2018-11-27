@@ -18,7 +18,7 @@ export class AddPizzaComponent implements OnInit {
 
   pizzaForm = new FormGroup({
     label: new FormControl('', Validators.required),
-    ingredient: new FormControl('', Validators.required),
+    ingredients: new FormControl('', Validators.required),
     price: new FormControl('', Validators.required),
     picture : new FormControl('http://la-cucina.fr/wp-content/uploads/2014/07/gal1.jpg')
   });

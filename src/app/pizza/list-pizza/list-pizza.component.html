@@ -12,8 +12,9 @@
                 <th scope="col">Label</th>
                 <th scope="col">Ingredients</th>
                 <th scope="col">Price</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
+                <th scope="col"><i class="fa fa-upload"></i></th>
+                <th scope="col"><span class="fa fa-trash text-danger" (click)="deletePizza(pizza._id)"></span></th>
+                <th scope="col"> <span class="fa fa-edit" (click)="showUpdateForm(pizza)"></span></th>
             </tr>
         </thead>
         <div *ngIf="!tmplPizzas" class="spinner"><img [src]="'./assets/loader.gif'" alt="loader">Loding ...</div>
@@ -26,14 +27,9 @@
                 <th scope="row">{{pizza.label}}</th>
                 <th scope="row">{{pizza.ingredients}}</th>
                 <th scope="row">{{pizza.price | currency : 'TND'}}</th>
-                <th scope="row">
-                    <span class="fa fa-trash text-danger" (click)="deletePizza(pizza._id)"></span>
-
-                </th>
-                <th scope="row">
-                    <span class="fa fa-edit" (click)="showUpdateForm(pizza)"></span>
-
-                </th>
+                <th scope="col"><i class="fa fa-upload"></i></th>
+                <th scope="row"><span class="fa fa-trash text-danger" (click)="deletePizza(pizza._id)"></span></th>
+                <th scope="row"><span class="fa fa-edit" (click)="showUpdateForm(pizza)"></span></th>
             </tr>
         </tbody>
     </table>

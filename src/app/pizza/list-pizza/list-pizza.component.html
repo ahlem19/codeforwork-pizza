@@ -5,6 +5,9 @@
         <button type="button" mdbBtn color="primary" mdbWavesEffect class="float-right" style="border-radius: 50%" (click)="showAddForm()">
       <span class="fa fa-plus"></span></button>
     </h3>
+    <br>
+    <app-picture-uploader *ngIf="isUploaderDisplayed" [pizzaId]="selectedPizzaId"></app-picture-uploader>
+    <span (click)="closeUploader()" *ngIf="isUploaderDisplayed"><i class="fa fa-window-close"></i></span>
     <table mdbTable *ngIf="(_pizzaStore$ | async)._pizzas as tmplPizzas">
         <thead>
             <tr>
@@ -19,15 +22,15 @@
         </thead>
         <div *ngIf="!tmplPizzas" class="spinner"><img [src]="'./assets/loader.gif'" alt="loader">Loding ...</div>
         <tbody>
-            <tr mdbTableCol *ngFor="let pizza of tmplPizzas  | paginate: { itemsPerPage: 10, currentPage: p } ; let i = index ">
+            <tr mdbTableCol *ngFor="let pizza of tmplPizzas | paginate: { itemsPerPage: 10, currentPage: p } ; let i = index ">
 
                 <th scope="row">
-                    <img [src]="pizza?.picture" class="img-responsive pizza" alt="pizza-picture">
+                    <img [src]="getPictureUrl(pizza?.picture)" class="img-responsive pizza" alt="pizza-picture">
                 </th>
                 <th scope="row">{{pizza.label}}</th>
                 <th scope="row">{{pizza.ingredients}}</th>
                 <th scope="row">{{pizza.price | currency : 'TND'}}</th>
-                <th scope="col"><i class="fa fa-upload"></i></th>
+                <th scope="col"><i class="fa fa-upload" (click)="showUploadder(pizza._id)"></i></th>
                 <th scope="row"><span class="fa fa-trash text-danger" (click)="deletePizza(pizza._id)"></span></th>
                 <th scope="row"><span class="fa fa-edit" (click)="showUpdateForm(pizza)"></span></th>
             </tr>

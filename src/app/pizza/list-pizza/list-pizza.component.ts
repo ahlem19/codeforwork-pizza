@@ -14,19 +14,18 @@ import * as config from '../../config';
   styleUrls: ['./list-pizza.component.scss']
 })
 export class ListPizzaComponent implements OnInit {
-
-  constructor(
-    private _pizzaService: PizzaService) {
-  }
+  private headElements = ['Picture', 'Label', 'Ingredients', 'Price', 'Import', 'Remove', 'Edit'];
   page = 1;
   @ViewChild('adddetail') private addPizzaComponent: AddPizzaComponent;
   @ViewChild('updatedetail') private updatePizzaComponent: UpdatePizzaComponent;
 
   _pizzaStore$: Observable<{_pizzas: IPizza[], counter: number}>;
   pizzaToUpdate: IPizza;
-  private isUploaderDisplayed = false;
-  private selectedPizzaId: string;
   pizza: any;
+
+  constructor(
+    private _pizzaService: PizzaService) {
+  }
 
   ngOnInit() {
     this._pizzaStore$ = this._pizzaService.getAllPizza();
@@ -59,11 +58,6 @@ export class ListPizzaComponent implements OnInit {
   showUploadder(pizza, currentPizza) {
     this.pizza = pizza;
     return currentPizza ? false : true;
-  }
-
-  closeUploader() {
-    this.isUploaderDisplayed = false;
-    this.selectedPizzaId = null;
   }
 
   getPictureUrl(picture) {

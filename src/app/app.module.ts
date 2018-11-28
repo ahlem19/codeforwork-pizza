@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxUploaderModule } from 'ngx-uploader';
 
 
 
@@ -17,8 +18,8 @@ import { MaterialModule } from './shared/material/material.module';
 import { MainMenuComponent } from './navigation/main-menu/main-menu.component';
 import { FooterComponent } from './navigation/footer/footer.component';
 import { AddPizzaComponent } from './pizza/add-pizza/add-pizza.component';
-import 'hammerjs';
 import { UpdatePizzaComponent } from './pizza/update-pizza/update-pizza.component';
+import { PictureUploaderComponent } from './pizza/picture-uploader/picture-uploader.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { UpdatePizzaComponent } from './pizza/update-pizza/update-pizza.componen
     MainMenuComponent,
     FooterComponent,
     AddPizzaComponent,
-    UpdatePizzaComponent
+    UpdatePizzaComponent,
+    PictureUploaderComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,8 @@ import { UpdatePizzaComponent } from './pizza/update-pizza/update-pizza.componen
     FormsModule,
     NgxPaginationModule,
     MDBBootstrapModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    NgxUploaderModule
   ],
   providers: [PizzaService],
   bootstrap: [AppComponent],

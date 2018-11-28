@@ -3,7 +3,7 @@ import { PizzaService } from 'src/app/services/pizza.service';
 import { AddPizzaComponent } from '../add-pizza/add-pizza.component';
 import { UpdatePizzaComponent } from '../update-pizza/update-pizza.component';
 import { IPizza } from 'src/app/models/pizza';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { refreshService } from 'src/app/services/update.service';
 
 @Component({
@@ -18,6 +18,8 @@ export class ListPizzaComponent implements OnInit {
 
   _pizzaStore$: Observable<{_pizzas: IPizza[], counter: number}>;
   pizzaToUpdate: IPizza;
+  private isUploaderDisplayed = false;
+  private selectedPizzaId: string;
 
   constructor( private _pizzaService: PizzaService,private socket:refreshService) {
   }
@@ -50,4 +52,17 @@ export class ListPizzaComponent implements OnInit {
     this.updatePizzaComponent.frame.show();
   }
 
+  showUploadder(id) {
+    this.isUploaderDisplayed = !this.isUploaderDisplayed;
+    this.selectedPizzaId = id;
+  }
+
+  closeUploader() {
+    this.isUploaderDisplayed = false;
+    this.selectedPizzaId = null;
+  }
+
+  getPictureUrl(picture){
+    return `http://localhost:3000/ressources/pizza-pictures/${picture}`;
+  }
 }

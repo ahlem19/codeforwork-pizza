@@ -8,6 +8,7 @@ import * as config from '../../config';
 
 
 
+
 @Component({
   selector: 'app-list-pizza',
   templateUrl: './list-pizza.component.html',
@@ -16,6 +17,7 @@ import * as config from '../../config';
 export class ListPizzaComponent implements OnInit {
   private headElements = ['Picture', 'Label', 'Ingredients', 'Price', 'Import', 'Remove', 'Edit'];
   page = 1;
+
   @ViewChild('adddetail') private addPizzaComponent: AddPizzaComponent;
   @ViewChild('updatedetail') private updatePizzaComponent: UpdatePizzaComponent;
 

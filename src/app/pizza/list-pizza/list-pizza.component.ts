@@ -4,7 +4,7 @@ import { AddPizzaComponent } from '../add-pizza/add-pizza.component';
 import { UpdatePizzaComponent } from '../update-pizza/update-pizza.component';
 import { IPizza } from 'src/app/models/pizza';
 import { Observable } from 'rxjs';
-import { calcBindingFlags } from '@angular/core/src/view/util';
+import * as config from '../../config';
 
 
 
@@ -14,6 +14,10 @@ import { calcBindingFlags } from '@angular/core/src/view/util';
   styleUrls: ['./list-pizza.component.scss']
 })
 export class ListPizzaComponent implements OnInit {
+
+  constructor(
+    private _pizzaService: PizzaService) {
+  }
   page = 1;
   @ViewChild('adddetail') private addPizzaComponent: AddPizzaComponent;
   @ViewChild('updatedetail') private updatePizzaComponent: UpdatePizzaComponent;
@@ -22,10 +26,7 @@ export class ListPizzaComponent implements OnInit {
   pizzaToUpdate: IPizza;
   private isUploaderDisplayed = false;
   private selectedPizzaId: string;
-
-  constructor(
-    private _pizzaService: PizzaService) {
-  }
+  pizza: any;
 
   ngOnInit() {
     this._pizzaStore$ = this._pizzaService.getAllPizza();
@@ -54,10 +55,10 @@ export class ListPizzaComponent implements OnInit {
     this.updatePizzaComponent.pizza = pizza;
     this.updatePizzaComponent.frame.show();
   }
-  pizza:any;
-  showUploadder(pizza,currentPizza) {
-    this.pizza=pizza;
-    return currentPizza?false:true;
+
+  showUploadder(pizza, currentPizza) {
+    this.pizza = pizza;
+    return currentPizza ? false : true;
   }
 
   closeUploader() {
@@ -65,12 +66,13 @@ export class ListPizzaComponent implements OnInit {
     this.selectedPizzaId = null;
   }
 
-  getPictureUrl(picture){
-    return `http://localhost:3000/ressources/pizza-pictures/${picture}`;
+  getPictureUrl(picture) {
+    return `${config.local.rootUrl}ressources/pizza-pictures/${picture}`;
   }
 
-  refresh(event){
-    console.log(`%c Refresh()`,"background-color:green;color:white");
-    location.reload();
-  }  
+  refresh(event) {
+    console.log(`%c Refresh()`, 'background-color:green;color:white');
+    alert('Pizza Picture Updated Successfully');
+    this._pizzaService.loadPizzaFromAPI();
+  }
 }

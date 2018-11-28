@@ -9,7 +9,7 @@ import { PizzaService } from 'src/app/services/pizza.service';
 })
 export class PictureUploaderComponent implements OnInit {
   @Input() pizzaId: string;
-  @Output() uploadPictureEvent:EventEmitter<boolean>=new EventEmitter();
+  @Output() uploadPictureEvent:EventEmitter<boolean> = new EventEmitter();
   formData: FormData;
   files: UploadFile[];
   uploadInput: EventEmitter<UploadInput>;
@@ -59,7 +59,7 @@ export class PictureUploaderComponent implements OnInit {
         this.dragOver = false;
         break;
       case 'done':
-        console.log(`%c Picture Uploaded `,"background-color:tomato;color:white");
+        console.log(`%c Picture Uploaded `, 'background-color:tomato;color:white');
         this.uploadPictureEvent.emit(true);
         break;
     }

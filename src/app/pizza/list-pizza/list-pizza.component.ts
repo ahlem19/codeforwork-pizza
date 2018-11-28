@@ -4,6 +4,7 @@ import { AddPizzaComponent } from '../add-pizza/add-pizza.component';
 import { UpdatePizzaComponent } from '../update-pizza/update-pizza.component';
 import { IPizza } from 'src/app/models/pizza';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { refreshService } from 'src/app/services/update.service';
 
 @Component({
   selector: 'app-list-pizza',
@@ -18,7 +19,7 @@ export class ListPizzaComponent implements OnInit {
   _pizzaStore$: Observable<{_pizzas: IPizza[], counter: number}>;
   pizzaToUpdate: IPizza;
 
-  constructor( private _pizzaService: PizzaService) {
+  constructor( private _pizzaService: PizzaService,private socket:refreshService) {
   }
 
   ngOnInit() {

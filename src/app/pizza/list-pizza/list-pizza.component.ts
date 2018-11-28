@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { PizzaService } from 'src/app/services/pizza.service';
 import { AddPizzaComponent } from '../add-pizza/add-pizza.component';
 import { UpdatePizzaComponent } from '../update-pizza/update-pizza.component';
 import { IPizza } from 'src/app/models/pizza';
 import { Observable } from 'rxjs';
+import { calcBindingFlags } from '@angular/core/src/view/util';
 
 
 
@@ -53,10 +54,10 @@ export class ListPizzaComponent implements OnInit {
     this.updatePizzaComponent.pizza = pizza;
     this.updatePizzaComponent.frame.show();
   }
-
-  showUploadder(id) {
-    this.isUploaderDisplayed = !this.isUploaderDisplayed;
-    this.selectedPizzaId = id;
+  pizza:any;
+  showUploadder(pizza,currentPizza) {
+    this.pizza=pizza;
+    return currentPizza?false:true;
   }
 
   closeUploader() {
@@ -67,4 +68,9 @@ export class ListPizzaComponent implements OnInit {
   getPictureUrl(picture){
     return `http://localhost:3000/ressources/pizza-pictures/${picture}`;
   }
+
+  refresh(event){
+    console.log(`%c Refresh()`,"background-color:green;color:white");
+    location.reload();
+  }  
 }

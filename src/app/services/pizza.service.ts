@@ -28,8 +28,9 @@ export class PizzaService {
   addPizza(_pizza: { pizza: IPizza }) {
     return this._http.post(`${url.local.rootUrl}pizza`, _pizza, {})
       .subscribe(
-        data => {
-          this._pizzaStore._pizzas.push(_pizza.pizza);
+        (data:any) => {
+          this._pizzaStore._pizzas.push(data.core);
+          
           const pizStor = {
             _pizzas: Object.assign({}, this._pizzaStore)._pizzas,
             counter: this._pizzaStore._pizzas.length
@@ -80,11 +81,6 @@ export class PizzaService {
         () => console.log('updatePizza from Service Completed')
       );
   }
-
-  getPizzaById() {
-    // TODO:to implement xhr
-  }
-
   loadPizzaFromAPI() {
     this._http.get(`${url.local.rootUrl}pizza`).subscribe(
       data => {

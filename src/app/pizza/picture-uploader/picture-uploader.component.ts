@@ -27,13 +27,7 @@ export class PictureUploaderComponent implements OnInit {
     switch (output.type) {
       case 'allAddedToQueue':
         // uncomment this if you want to auto upload files when added
-        // const event: UploadInput = {
-        //   type: 'uploadAll',
-        //   url: '/upload',
-        //   method: 'POST',
-        //   data: { foo: 'bar' }
-        // };
-        // this.uploadInput.emit(event);
+        this.startUpload();
         break;
       case 'addedToQueue':
         if (typeof output.file !== 'undefined') {

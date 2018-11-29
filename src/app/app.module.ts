@@ -20,6 +20,8 @@ import { FooterComponent } from './navigation/footer/footer.component';
 import { AddPizzaComponent } from './pizza/add-pizza/add-pizza.component';
 import { UpdatePizzaComponent } from './pizza/update-pizza/update-pizza.component';
 import { PictureUploaderComponent } from './pizza/picture-uploader/picture-uploader.component';
+import { FilterPipe } from './shared/filter.pipe';
+import { CatalogComponent } from './pizza/catalog/catalog.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { PictureUploaderComponent } from './pizza/picture-uploader/picture-uploa
     FooterComponent,
     AddPizzaComponent,
     UpdatePizzaComponent,
-    PictureUploaderComponent
+    PictureUploaderComponent,
+    FilterPipe,
+    CatalogComponent
   ],
   imports: [
     BrowserModule,

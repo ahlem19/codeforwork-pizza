@@ -9,3 +9,28 @@
     padding: 7px;
     height: 99px;
 }
+.image-pizza{
+    width: 100px;
+    height: 100px;
+    box-shadow: 5px 8px 12px 0px #2534c721;
+    background-size: cover;
+}
+.plusBtn{
+    border-radius: 50%;
+    margin-top: 12px;
+    padding: 20px;
+    right: 10%;
+    left: initial;
+    bottom: 18%;
+    z-index: 1000;
+    span{
+        display: block;
+        width: 15px;
+        font-size: 15px;
+        height: 15px;
+    }
+}
+.withoutfooter{
+
+    padding-bottom: 120px;
+}

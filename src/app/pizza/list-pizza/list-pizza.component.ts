@@ -25,7 +25,7 @@ export class ListPizzaComponent implements OnInit {
   pizzaToUpdate: IPizza;
   pizza: any;
 
-  constructor( private _pizzaService: PizzaService,private socket:refreshService) {
+  constructor( private _pizzaService: PizzaService) {
   }
 
   ngOnInit() {

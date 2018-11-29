@@ -1,5 +1,6 @@
-import { Component, OnInit, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { UploadOutput, UploadInput, UploadFile, humanizeBytes, UploaderOptions, UploadStatus } from 'ngx-uploader';
+import { PizzaService } from 'src/app/services/pizza.service';
 
 @Component({
   selector: 'app-picture-uploader',
@@ -8,6 +9,7 @@ import { UploadOutput, UploadInput, UploadFile, humanizeBytes, UploaderOptions, 
 })
 export class PictureUploaderComponent implements OnInit {
   @Input() pizzaId: string;
+  @Output() uploadPictureEvent:EventEmitter<boolean> = new EventEmitter();
   formData: FormData;
   files: UploadFile[];
   uploadInput: EventEmitter<UploadInput>;
@@ -15,7 +17,7 @@ export class PictureUploaderComponent implements OnInit {
   dragOver: boolean;
   options: UploaderOptions;
 
-  constructor() {
+  constructor(private _pizzaService: PizzaService) {
     this.options = { concurrency: 1, maxUploads: 1 };
     this.files = [];
     this.uploadInput = new EventEmitter<UploadInput>();
@@ -57,7 +59,8 @@ export class PictureUploaderComponent implements OnInit {
         this.dragOver = false;
         break;
       case 'done':
-        // The file is downloaded
+        console.log(`%c Picture Uploaded `, 'background-color:tomato;color:white');
+        this.uploadPictureEvent.emit(true);
         break;
     }
   }
@@ -67,7 +70,7 @@ export class PictureUploaderComponent implements OnInit {
       type: 'uploadAll',
       url: 'http://localhost:3000/uploads/picture',
       method: 'POST',
-      data: {pizzaId: this.pizzaId }
+      data: { pizzaId: this.pizzaId }
     };
 
     this.uploadInput.emit(event);

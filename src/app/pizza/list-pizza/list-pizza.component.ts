@@ -1,10 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { PizzaService } from 'src/app/services/pizza.service';
 import { AddPizzaComponent } from '../add-pizza/add-pizza.component';
 import { UpdatePizzaComponent } from '../update-pizza/update-pizza.component';
 import { IPizza } from 'src/app/models/pizza';
 import { Observable } from 'rxjs';
-import { refreshService } from 'src/app/services/update.service';
+import * as config from '../../config';
+
+
+
 
 @Component({
   selector: 'app-list-pizza',
@@ -12,14 +15,15 @@ import { refreshService } from 'src/app/services/update.service';
   styleUrls: ['./list-pizza.component.scss']
 })
 export class ListPizzaComponent implements OnInit {
+  private headElements = ['Picture', 'Label', 'Ingredients', 'Price', 'Import', 'Remove', 'Edit'];
   page = 1;
+
   @ViewChild('adddetail') private addPizzaComponent: AddPizzaComponent;
   @ViewChild('updatedetail') private updatePizzaComponent: UpdatePizzaComponent;
 
   _pizzaStore$: Observable<{_pizzas: IPizza[], counter: number}>;
   pizzaToUpdate: IPizza;
-  private isUploaderDisplayed = false;
-  private selectedPizzaId: string;
+  pizza: any;
 
   constructor( private _pizzaService: PizzaService,private socket:refreshService) {
   }
@@ -52,17 +56,18 @@ export class ListPizzaComponent implements OnInit {
     this.updatePizzaComponent.frame.show();
   }
 
-  showUploadder(id) {
-    this.isUploaderDisplayed = !this.isUploaderDisplayed;
-    this.selectedPizzaId = id;
+  showUploadder(pizza, currentPizza) {
+    this.pizza = pizza;
+    return currentPizza ? false : true;
   }
 
-  closeUploader() {
-    this.isUploaderDisplayed = false;
-    this.selectedPizzaId = null;
+  getPictureUrl(picture) {
+    return `${config.local.rootUrl}ressources/pizza-pictures/${picture}`;
   }
 
-  getPictureUrl(picture){
-    return `http://localhost:3000/ressources/pizza-pictures/${picture}`;
+  refresh(event) {
+    console.log(`%c Refresh()`, 'background-color:green;color:white');
+    alert('Pizza Picture Updated Successfully');
+    this._pizzaService.loadPizzaFromAPI();
   }
 }

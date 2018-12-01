@@ -22,7 +22,7 @@ import { UpdatePizzaComponent } from './pizza/update-pizza/update-pizza.componen
 import { PictureUploaderComponent } from './pizza/picture-uploader/picture-uploader.component';
 import { FilterPipe } from './shared/filter.pipe';
 import { CatalogComponent } from './pizza/catalog/catalog.component';
-
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +47,8 @@ import { CatalogComponent } from './pizza/catalog/catalog.component';
     NgxPaginationModule,
     MDBBootstrapModule.forRoot(),
     AppRoutingModule,
-    NgxUploaderModule
+    NgxUploaderModule,
+    InfiniteScrollModule
   ],
   providers: [PizzaService],
   bootstrap: [AppComponent],

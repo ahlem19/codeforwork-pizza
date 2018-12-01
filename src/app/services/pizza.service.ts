@@ -3,34 +3,31 @@ import { HttpClient } from '@angular/common/http';
 import * as url from '../config.js';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { IPizza } from '../models/pizza';
+interface pizzaStore {
+  _pizzas: IPizza[],
+  counter: number
+}
 @Injectable({
   providedIn: 'root'
 })
 export class PizzaService {
-  private pizzas$: Observable<{_pizzas: IPizza[], counter: number}>;
-  private _pizzaStore: {
-    _pizzas: IPizza[],
-    counter: number
-  };
+  private _pizzaStore: pizzaStore;
 
-  private _pizzas$: BehaviorSubject<{_pizzas: IPizza[], counter: number}>;
+  private _pizzas$: BehaviorSubject<pizzaStore>;
 
   constructor(private _http: HttpClient) {
-    this._pizzaStore = { _pizzas : [], counter: 0 };
-    this._pizzas$ = <BehaviorSubject<{_pizzas: [], counter: 0 }>>new BehaviorSubject({_pizzas: [], counter: 0});
-    this.pizzas$ = this._pizzas$.asObservable();
+    this._pizzaStore = { _pizzas: [], counter: 0 };
+    this._pizzas$ = <BehaviorSubject<pizzaStore>>new BehaviorSubject({ _pizzas: [], counter: 0 });
   }
-
-  getAllPizza(): Observable<{_pizzas: IPizza[], counter: number}> {
-    return this.pizzas$ as Observable<{_pizzas: IPizza[], counter: number}>;
+  getAllPizza(): Observable<pizzaStore> {
+    return this._pizzas$.asObservable() as Observable<pizzaStore>;
   }
-
   addPizza(_pizza: { pizza: IPizza }) {
     return this._http.post(`${url.local.rootUrl}pizza`, _pizza, {})
       .subscribe(
-        (data:any) => {
+        (data: any) => {
           this._pizzaStore._pizzas.push(data.core);
-          
+
           const pizStor = {
             _pizzas: Object.assign({}, this._pizzaStore)._pizzas,
             counter: this._pizzaStore._pizzas.length
@@ -81,10 +78,17 @@ export class PizzaService {
         () => console.log('updatePizza from Service Completed')
       );
   }
-  loadPizzaFromAPI() {
-    this._http.get(`${url.local.rootUrl}pizza`).subscribe(
-      data => {
-        this._pizzaStore._pizzas = data as IPizza[];
+  private next: number = 0;
+  loadPizzaFromAPI(isnext: boolean = false,cb=()=>{}) {
+    if (isnext)
+      this.next += 5;
+    this._http.get(`${url.local.rootUrl}pizza?next=${this.next}`).subscribe(
+      (data: IPizza[]) => {
+        cb();
+        if (this.next == 0)
+          this._pizzaStore._pizzas = data;
+        else
+          this._pizzaStore._pizzas = this._pizzaStore._pizzas.concat(data);
         const pizStor = {
           _pizzas: Object.assign({}, this._pizzaStore)._pizzas,
           counter: this._pizzaStore._pizzas.length

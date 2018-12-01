@@ -1,9 +1,8 @@
-<!--Navbar-->
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo">
+<mdb-navbar SideClass="navbar navbar-expand-lg fixed-top navbar-dark scrolling-navbar  top-nav-collapse indigo">
 
     <!-- Navbar brand -->
     <mdb-navbar-brand>
-        <a class="navbar-brand" href="#"> <img src="../assets/cfwlogo.png" height="30" alt="cfk">Pizzaria</a>
+        <a class="navbar-brand" [routerLink]="['/intro']"> <img src="../assets/cfwlogo.png" height="30" alt="cfk">Pizzaria</a>
     </mdb-navbar-brand>
 
     <!-- Collapsible content -->
@@ -11,24 +10,41 @@
 
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link waves-light" routerLinkActive="active" mdbWavesEffect>Home<span class="sr-only">(current)</span></a>
-            </li>
             <li class="nav-item">
+                <a class="nav-link waves-light" routerLinkActive="active" mdbWavesEffect [routerLink]="['/intro']"><i class="fa fa-home"></i><span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item ">
 
-                <a class="nav-link waves-light" mdbWavesEffect routerLinkActive="active" [routerLink]="['/pizza']">Pizza Menu</a>
+                <a class="nav-link waves-light " mdbWavesEffect routerLinkActive="active " [routerLink]="['/order']">Order</a>
+            </li>
+
+            <li class="nav-item ">
+                <a class="nav-link waves-light " mdbWavesEffect routerLinkActive="active " [routerLink]="[ '/catalog'] ">Catalog</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link waves-light" mdbWavesEffect>Order </a>
+                <a class="nav-link waves-light" mdbWavesEffecr routerLinkActive="active" [routerLink]="['pizza-menu']">Pizza Menu</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link waves-light " mdbWavesEffect routerLinkActive="active " [routerLink]="[ '/dashboard'] ">Dashboard</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link waves-light " mdbWavesEffect routerLinkActive="active " [routerLink]="[ '/profile'] ">Profile</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link waves-light " mdbWavesEffect routerLinkActive="active " [routerLink]="[ '/contact'] ">Contact</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link waves-light " mdbWavesEffect routerLinkActive="active " [routerLink]="[ '/aboutus'] ">About
+          us</a>
             </li>
 
         </ul>
         <!-- Links -->
 
         <!-- Search form -->
-        <form class="form-inline waves-light" mdbWavesEffect>
-            <div class="md-form mt-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+        <form class="form-inline waves-light " mdbWavesEffect>
+            <div class="md-form mt-0 ">
+                <input class="form-control mr-sm-2 " type="text " placeholder="Search ">
             </div>
         </form>
     </links>

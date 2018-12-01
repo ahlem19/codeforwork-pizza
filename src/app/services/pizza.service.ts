@@ -28,9 +28,9 @@ export class PizzaService {
   addPizza(_pizza: { pizza: IPizza }) {
     return this._http.post(`${url.local.rootUrl}pizza`, _pizza, {})
       .subscribe(
-        (data:any) => {
+        (data: any) => {
           this._pizzaStore._pizzas.push(data.core);
-          
+
           const pizStor = {
             _pizzas: Object.assign({}, this._pizzaStore)._pizzas,
             counter: this._pizzaStore._pizzas.length

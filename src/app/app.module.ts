@@ -20,16 +20,21 @@ import { FooterComponent } from './navigation/footer/footer.component';
 import { AddPizzaComponent } from './pizza/add-pizza/add-pizza.component';
 import { UpdatePizzaComponent } from './pizza/update-pizza/update-pizza.component';
 import { PictureUploaderComponent } from './pizza/picture-uploader/picture-uploader.component';
+import { FilterPipe } from './shared/filter.pipe';
+import { CatalogComponent } from './pizza/catalog/catalog.component';
+import { PagesModule } from './navigation/pages/pages.module';
+import { UserModule } from './user/user.module';
+import { OrderModule } from './order/order.module';
+import { PizzaFilmComponent } from './pizza/pizza-film/pizza-film.component';
+import { PizzaModule } from './pizza/pizza.module';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListPizzaComponent,
     MainMenuComponent,
     FooterComponent,
-    AddPizzaComponent,
-    UpdatePizzaComponent,
-    PictureUploaderComponent
   ],
   imports: [
     BrowserModule,
@@ -38,12 +43,14 @@ import { PictureUploaderComponent } from './pizza/picture-uploader/picture-uploa
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ReactiveFormsModule,
     FormsModule,
-    NgxPaginationModule,
     MDBBootstrapModule.forRoot(),
     AppRoutingModule,
-    NgxUploaderModule
+    NgxUploaderModule,
+    PagesModule,
+    UserModule,
+    OrderModule,
+    PizzaModule
   ],
   providers: [PizzaService],
   bootstrap: [AppComponent],

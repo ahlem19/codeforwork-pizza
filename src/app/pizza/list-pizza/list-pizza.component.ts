@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy, ChangeDetectorRef, HostListener } from '@angular/core';
 import { PizzaService } from 'src/app/services/pizza.service';
 import { AddPizzaComponent } from '../add-pizza/add-pizza.component';
 import { UpdatePizzaComponent } from '../update-pizza/update-pizza.component';
@@ -15,13 +15,11 @@ import * as config from '../../config';
   styleUrls: ['./list-pizza.component.scss']
 })
 export class ListPizzaComponent implements OnInit {
-  private headElements = ['Picture', 'Label', 'Ingredients', 'Price', 'Import', 'Remove', 'Edit'];
-  page = 1;
-
+  private headElements = ['Picture', 'Label', 'Ingredients', 'Price', 'U', 'X', 'E'];
   @ViewChild('adddetail') private addPizzaComponent: AddPizzaComponent;
   @ViewChild('updatedetail') private updatePizzaComponent: UpdatePizzaComponent;
 
-  _pizzaStore$: Observable<{_pizzas: IPizza[], counter: number}>;
+  _pizzaStore$: Observable<{ _pizzas: IPizza[], counter: number }>;
   pizzaToUpdate: IPizza;
   pizza: any;
 
@@ -70,5 +68,12 @@ export class ListPizzaComponent implements OnInit {
     console.log(`%c Refresh()`, 'background-color:green;color:white');
     alert('Pizza Picture Updated Successfully');
     this._pizzaService.loadPizzaFromAPI();
+  }
+  searchText: string = '';
+  previous: string;
+
+  @HostListener('input') onchange() {
+    console.log(this.searchText);
+    // this.searchItems();
   }
 }

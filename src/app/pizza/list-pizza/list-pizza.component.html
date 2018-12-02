@@ -1,9 +1,17 @@
+<<<<<<< HEAD
 <div class="container withoutfooter"
      infiniteScroll
      [infiniteScrollDistance]="2"
      [infiniteScrollThrottle]="50"
      (scrolled)="onScroll()"
      style="padding-top: 77px;">
+=======
+<div class="container withoutfooter" style="padding-top: 77px;"
+     infiniteScroll
+     [infiniteScrollDistance]="2"
+     [infiniteScrollThrottle]="50"
+     (scrolled)="onScroll()">
+>>>>>>> 0bd07b7cbf44fb9dc468fe6dfe397054147a2ceb
     <h3 style="text-align: center;padding-top:33px !important;">
         CFK Pizza MENU
         <mat-icon [matBadge]="(_pizzaStore$ | async).counter"
@@ -48,8 +56,13 @@
             <tr mdbTableCol
                 *ngFor="let pizza of tmplPizzas|filter:searchText ; let i = index ">
 
+<<<<<<< HEAD
                 <th class="waves-effect"
                     scope="row">
+=======
+
+                <th scope="row">
+>>>>>>> 0bd07b7cbf44fb9dc468fe6dfe397054147a2ceb
                     <div (dblclick)="pizza.currentPizza=showUploadder(pizza,pizza.currentPizza)"
                          class="image-pizza"
                          [ngStyle]="{'background-image':'url('+getPictureUrl(pizza?.picture)+')'}"></div>

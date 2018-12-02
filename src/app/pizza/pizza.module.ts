@@ -14,8 +14,8 @@ import { NgxUploaderModule } from 'ngx-uploader';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
 @NgModule(
   {
     declarations: [
@@ -38,7 +38,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
       HttpClientModule,
       BrowserAnimationsModule,
       InfiniteScrollModule
-    ],
+
+],
     exports: [
       ListPizzaComponent,
       AddPizzaComponent,
@@ -49,7 +50,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
       PizzaFilmComponent
     ],
     providers: [PizzaService],
-    schemas: [NO_ERRORS_SCHEMA]
+    schemas: [ NO_ERRORS_SCHEMA ]
   }
 )
 export class PizzaModule {

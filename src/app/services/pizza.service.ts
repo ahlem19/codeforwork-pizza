@@ -3,25 +3,27 @@ import { HttpClient } from '@angular/common/http';
 import * as url from '../config.js';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { IPizza } from '../models/pizza';
-interface pizzaStore {
-  _pizzas: IPizza[],
-  counter: number
+interface PizzaStore {
+  _pizzas: IPizza[];
+  counter: number;
 }
 @Injectable({
   providedIn: 'root'
 })
 export class PizzaService {
-  private _pizzaStore: pizzaStore;
-
-  private _pizzas$: BehaviorSubject<pizzaStore>;
+  private _pizzaStore: PizzaStore;
+  private _pizzas$: BehaviorSubject<PizzaStore>;
+  private nextPage = 0;
 
   constructor(private _http: HttpClient) {
     this._pizzaStore = { _pizzas: [], counter: 0 };
-    this._pizzas$ = <BehaviorSubject<pizzaStore>>new BehaviorSubject({ _pizzas: [], counter: 0 });
+    this._pizzas$ = <BehaviorSubject<PizzaStore>>new BehaviorSubject({ _pizzas: [], counter: 0 });
   }
-  getAllPizza(): Observable<pizzaStore> {
-    return this._pizzas$.asObservable() as Observable<pizzaStore>;
+
+  getAllPizza(): Observable<PizzaStore> {
+    return this._pizzas$.asObservable() as Observable<PizzaStore>;
   }
+
   addPizza(_pizza: { pizza: IPizza }) {
     return this._http.post(`${url.local.rootUrl}pizza`, _pizza, {})
       .subscribe(
@@ -78,17 +80,17 @@ export class PizzaService {
         () => console.log('updatePizza from Service Completed')
       );
   }
-  private next: number = 0;
-  loadPizzaFromAPI(isnext: boolean = false,cb=()=>{}) {
-    if (isnext)
-      this.next += 5;
-    this._http.get(`${url.local.rootUrl}pizza?next=${this.next}`).subscribe(
+
+  loadPizzaFromAPI(isnext: boolean = false , cb= () => {}) {
+    if (isnext) {this.nextPage += 5; }
+    this._http.get(`${url.local.rootUrl}pizza?nextPage=${this.nextPage}`).subscribe(
       (data: IPizza[]) => {
-        cb();
-        if (this.next == 0)
+         cb();
+        if (this.nextPage === 0) {
           this._pizzaStore._pizzas = data;
-        else
+        } else {
           this._pizzaStore._pizzas = this._pizzaStore._pizzas.concat(data);
+        }
         const pizStor = {
           _pizzas: Object.assign({}, this._pizzaStore)._pizzas,
           counter: this._pizzaStore._pizzas.length

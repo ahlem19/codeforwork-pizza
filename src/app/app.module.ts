@@ -3,9 +3,6 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxUploaderModule } from 'ngx-uploader';
-
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PizzaService } from './services/pizza.service';
@@ -19,9 +16,7 @@ import { PagesModule } from './navigation/pages/pages.module';
 import { UserModule } from './user/user.module';
 import { OrderModule } from './order/order.module';
 import { PizzaModule } from './pizza/pizza.module';
-
-
-
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +37,8 @@ import { PizzaModule } from './pizza/pizza.module';
     PagesModule,
     UserModule,
     OrderModule,
-    PizzaModule
+    PizzaModule,
+    InfiniteScrollModule
   ],
   providers: [PizzaService],
   bootstrap: [AppComponent],

@@ -48,8 +48,8 @@
             <tr mdbTableCol
                 *ngFor="let pizza of tmplPizzas|filter:searchText ; let i = index ">
 
-                <th class="waves-effect"
-                    scope="row">
+
+                <th scope="row">
                     <div (dblclick)="pizza.currentPizza=showUploadder(pizza,pizza.currentPizza)"
                          class="image-pizza"
                          [ngStyle]="{'background-image':'url('+getPictureUrl(pizza?.picture)+')'}"></div>

@@ -15,6 +15,7 @@ import * as config from '../../config';
   styleUrls: ['./list-pizza.component.scss']
 })
 export class ListPizzaComponent implements OnInit {
+
   private headElements = ['Picture', 'Label', 'Ingredients', 'Price', 'U', 'X', 'E'];
   @ViewChild('adddetail') private addPizzaComponent: AddPizzaComponent;
   @ViewChild('updatedetail') private updatePizzaComponent: UpdatePizzaComponent;
@@ -22,14 +23,18 @@ export class ListPizzaComponent implements OnInit {
   _pizzaStore$: Observable<{ _pizzas: IPizza[], counter: number }>;
   pizzaToUpdate: IPizza;
   pizza: any;
-  statusLoading: boolean = false;
+  statusLoading = false;
+  searchText = '';
+
   constructor(private _pizzaService: PizzaService) {
   }
+
   onScroll() {
     this.statusLoading = true;
-    this._pizzaService.loadPizzaFromAPI(true, () => {
+    this._pizzaService.loadPizzaFromAPI(true , () => {
       this.statusLoading = false;
     });
+    console.log('%c onScorll() Trigred', 'background-color:green;color:white;font-size:18px;');
   }
   ngOnInit() {
     this._pizzaStore$ = this._pizzaService.getAllPizza();
@@ -73,5 +78,4 @@ export class ListPizzaComponent implements OnInit {
     alert('Pizza Picture Updated Successfully');
     this._pizzaService.loadPizzaFromAPI();
   }
-  searchText: string = '';
 }

@@ -22,13 +22,13 @@ export class ListPizzaComponent implements OnInit {
   _pizzaStore$: Observable<{ _pizzas: IPizza[], counter: number }>;
   pizzaToUpdate: IPizza;
   pizza: any;
-  statusLoading:boolean=false;
+  statusLoading: boolean = false;
   constructor(private _pizzaService: PizzaService) {
   }
   onScroll() {
-    this.statusLoading=true;
-    this._pizzaService.loadPizzaFromAPI(true,()=>{
-      this.statusLoading=false;
+    this.statusLoading = true;
+    this._pizzaService.loadPizzaFromAPI(true, () => {
+      this.statusLoading = false;
     });
   }
   ngOnInit() {

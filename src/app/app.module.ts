@@ -27,9 +27,7 @@ import { UserModule } from './user/user.module';
 import { OrderModule } from './order/order.module';
 import { PizzaFilmComponent } from './pizza/pizza-film/pizza-film.component';
 import { PizzaModule } from './pizza/pizza.module';
-
-
-
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +49,7 @@ import { PizzaModule } from './pizza/pizza.module';
     UserModule,
     OrderModule,
     PizzaModule
+    InfiniteScrollModule
   ],
   providers: [PizzaService],
   bootstrap: [AppComponent],

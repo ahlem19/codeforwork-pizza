@@ -1,30 +1,40 @@
-<div class="container withoutfooter" style="padding-top: 77px;">
+<div class="container withoutfooter" style="padding-top: 77px;"
+     infiniteScroll
+     [infiniteScrollDistance]="2"
+     [infiniteScrollThrottle]="50"
+     (scrolled)="onScroll()">
     <h3 style="text-align: center;padding-top:33px !important;">
         CFK Pizza MENU
-        <mat-icon [matBadge]="(_pizzaStore$ | async).counter" matBadgeOverlap="false"></mat-icon>
+        <mat-icon [matBadge]="(_pizzaStore$ | async).counter"
+                  matBadgeOverlap="false"></mat-icon>
 
     </h3>
     <div class="md-form">
-        <input type="text" #search [(ngModel)]="searchText" class="form-control" id="search" mdbInputDirective>
+        <input type="text"
+               [(ngModel)]="searchText"
+               class="form-control"
+               id="search"
+               mdbInputDirective>
         <label for="search">Search</label>
     </div>
-    <table *ngIf="(_pizzaStore$ | async)._pizzas as tmplPizzas" class="table table-striped table-responsive-md btn-table">
+
+    <table *ngIf="(_pizzaStore$ | async)._pizzas as tmplPizzas"
+           class="table table-striped table-responsive-md btn-table">
         <thead>
             <tr>
-                <th scope="col" *ngFor="let head of headElements; let i = index" scope="col" [mdbTableSort]="tmplPizzas" [sortBy]="headElements[i]">{{head}}
-                    <mdb-icon *ngIf="i===1?true:i===2?true:i===3?true:false" icon="sort"></mdb-icon>
-
+                <th scope="col"
+                    *ngFor="let head of headElements; let i = index"
+                    scope="col"
+                    [mdbTableSort]="tmplPizzas"
+                    [sortBy]="headElements[i]">{{head}}
+                    <mdb-icon *ngIf="i===1?true:i===2?true:i===3?true:false"
+                              icon="sort"></mdb-icon>
                 </th>
-                <!--   <th scope="col">Image</th>
-                <th scope="col">Label</th>
-                <th scope="col">Ingredients</th>
-                <th scope="col">Price</th>
-                <th scope="col"><i class="fa fa-upload"></i></th>
-                <th scope="col"><span class="fa fa-trash text-danger"></span></th>
-                <th scope="col"> <span class="fa fa-edit"></span></th> -->
             </tr>
         </thead>
-        <div *ngIf="!tmplPizzas" class="spinner"><img [src]="'./assets/loader.gif'" alt="loader">Loding ...</div>
+        <div *ngIf="!tmplPizzas"
+             class="spinner"><img [src]="'./assets/loader.gif'"
+                 alt="loader">Loading ...</div>
         <tbody *ngIf="(_pizzaStore$ | async).counter === 0">
             <tr>
                 <th colspan="8">
@@ -34,27 +44,55 @@
 
         </tbody>
         <tbody>
-            <tr mdbTableCol *ngFor="let pizza of tmplPizzas|filter:searchText ; let i = index ">
+            <tr mdbTableCol
+                *ngFor="let pizza of tmplPizzas|filter:searchText ; let i = index ">
 
-                <th class="waves-effect" scope="row">
-                    <div (dblclick)="pizza.currentPizza=showUploadder(pizza,pizza.currentPizza)" class="image-pizza" [ngStyle]="{'background-image':'url('+getPictureUrl(pizza?.picture)+')'}"></div>
 
-                    <app-picture-uploader *ngIf="pizza?.currentPizza" [pizzaId]="pizza._id" (uploadPictureEvent)="refresh($event)"></app-picture-uploader>
+                <th scope="row">
+                    <div (dblclick)="pizza.currentPizza=showUploadder(pizza,pizza.currentPizza)"
+                         class="image-pizza"
+                         [ngStyle]="{'background-image':'url('+getPictureUrl(pizza?.picture)+')'}"></div>
+
+                    <app-picture-uploader *ngIf="pizza?.currentPizza"
+                                          [pizzaId]="pizza._id"
+                                          (uploadPictureEvent)="refresh($event)"></app-picture-uploader>
                 </th>
                 <th scope="row">{{pizza.label}}</th>
                 <th scope="row">{{pizza.ingredients}}</th>
                 <th scope="row">{{pizza.price | currency : 'TND'}}</th>
-                <th scope="col" class="waves-effect"><i class="fa fa-upload" (click)="pizza.currentPizza=showUploadder(pizza,pizza.currentPizza)"></i></th>
-                <th scope="row" class="waves-effect"><span class="fa fa-trash text-danger" (click)="deletePizza(pizza._id)"></span></th>
-                <th scope="row" class="waves-effect"><span class="fa fa-edit" (click)="showUpdateForm(pizza)"></span></th>
+                <th scope="col"
+                    class="waves-effect"><i class="fa fa-upload"
+                       (click)="pizza.currentPizza=showUploadder(pizza,pizza.currentPizza)"></i></th>
+                <th scope="row"
+                    class="waves-effect"><span class="fa fa-trash text-danger"
+                          (click)="deletePizza(pizza._id)"></span></th>
+                <th scope="row"
+                    class="waves-effect"><span class="fa fa-edit"
+                          (click)="showUpdateForm(pizza)"></span></th>
             </tr>
         </tbody>
+
+        <tbody *ngIf="statusLoading">
+            <tr>
+                <th colspan="8">
+                    <h1 class="text text-primary">loading...</h1>
+                </th>
+            </tr>
+
+        </tbody>
     </table>
-    <button type="button" mdbBtn color="primary" mdbWavesEffect class="float-right plusBtn fixed-bottom" (click)="showAddForm()">
+    <button type="button"
+            mdbBtn
+            color="primary"
+            mdbWavesEffect
+            class="float-right plusBtn fixed-bottom"
+            (click)="showAddForm()">
         <span class="fa fa-plus"></span>
     </button>
 
 </div>
 
-<app-add-pizza #adddetail (addPizzaEvent)="savePizza($event)"></app-add-pizza>
-<app-update-pizza #updatedetail (updatePizzaEvent)="saveUpdatedPizza($event)"></app-update-pizza>
+<app-add-pizza #adddetail
+               (addPizzaEvent)="savePizza($event)"></app-add-pizza>
+<app-update-pizza #updatedetail
+                  (updatePizzaEvent)="saveUpdatedPizza($event)"></app-update-pizza>

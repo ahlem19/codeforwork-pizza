@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ChangeDetectionStrategy, ChangeDetectorRef, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PizzaService } from 'src/app/services/pizza.service';
 import { AddPizzaComponent } from '../add-pizza/add-pizza.component';
 import { UpdatePizzaComponent } from '../update-pizza/update-pizza.component';
@@ -22,11 +22,15 @@ export class ListPizzaComponent implements OnInit {
   _pizzaStore$: Observable<{ _pizzas: IPizza[], counter: number }>;
   pizzaToUpdate: IPizza;
   pizza: any;
-
-  constructor(
-    private _pizzaService: PizzaService) {
+  statusLoading:boolean=false;
+  constructor(private _pizzaService: PizzaService) {
   }
-
+  onScroll() {
+    this.statusLoading=true;
+    this._pizzaService.loadPizzaFromAPI(true,()=>{
+      this.statusLoading=false;
+    });
+  }
   ngOnInit() {
     this._pizzaStore$ = this._pizzaService.getAllPizza();
     this._pizzaService.loadPizzaFromAPI();
@@ -70,10 +74,4 @@ export class ListPizzaComponent implements OnInit {
     this._pizzaService.loadPizzaFromAPI();
   }
   searchText: string = '';
-  previous: string;
-
-  @HostListener('input') onchange() {
-    console.log(this.searchText);
-    // this.searchItems();
-  }
 }

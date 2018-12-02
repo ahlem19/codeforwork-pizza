@@ -1,25 +1,27 @@
 <!-- Card -->
-<div class="row">
-    <!-- Card -->
-<div class="col-md-4 card" *ngFor="let pizza of (_pizzaStore$ | async)._pizzas">
-    <div class="view overlay waves-light" mdbWavesEffect>
-      <!-- Card img -->
-      <div class="image-pizza"
-      [ngStyle]="{'background-image':'url('+getPictureUrl(pizza?.picture)+')'}" alt="Card image cap"></div>
+<div class="container withoutfooter">
+    <h1 class="text text-primary text-center">Our Pizza Catalog</h1>
+    <div class="row" style="margin:1px;">
+        <!-- Card -->
+        <div class="col-md-4 card" *ngFor="let pizza of (_pizzaStore$ | async)._pizzas">
+            <div class="view overlay waves-light" mdbWavesEffect>
+                <!-- Card img -->
+                <div class="image-pizza" [ngStyle]="{'background-image':'url('+getPictureUrl(pizza?.picture)+')'}" alt="Card image cap"></div>
+            </div>
+            <!--Card content-->
+            <mdb-card-body>
+                <!--Title-->
+                <mdb-card-title>
+                    <h4>{{pizza.label}}</h4>
+                </mdb-card-title>
+
+                <!--Text-->
+                <mdb-card-text> {{pizza.ingredients}}
+                </mdb-card-text>
+
+                <a href="#" mdbBtn color="primary" mdbWavesEffect>{{pizza.price | currency : 'TND'}}</a>
+            </mdb-card-body>
+        </div>
+        <!-- Card -->
     </div>
-    <!--Card content-->
-    <mdb-card-body>
-      <!--Title-->
-      <mdb-card-title>
-        <h4>{{pizza.label}}</h4>
-      </mdb-card-title>
-  
-      <!--Text-->
-      <mdb-card-text> {{pizza.ingredients}}
-      </mdb-card-text>
-  
-      <a href="#" mdbBtn color="primary" mdbWavesEffect>{{pizza.price | currency : 'TND'}}</a>
-    </mdb-card-body>
-  </div>
-  <!-- Card -->
-  </div>
+</div>

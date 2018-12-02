@@ -22,18 +22,17 @@ import { UpdatePizzaComponent } from './pizza/update-pizza/update-pizza.componen
 import { PictureUploaderComponent } from './pizza/picture-uploader/picture-uploader.component';
 import { FilterPipe } from './shared/filter.pipe';
 import { CatalogComponent } from './pizza/catalog/catalog.component';
+import { PagesModule } from './navigation/pages/pages.module';
+import { UserModule } from './user/user.module';
+import { OrderModule } from './order/order.module';
+import { PizzaFilmComponent } from './pizza/pizza-film/pizza-film.component';
+import { PizzaModule } from './pizza/pizza.module';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 @NgModule({
   declarations: [
     AppComponent,
-    ListPizzaComponent,
     MainMenuComponent,
     FooterComponent,
-    AddPizzaComponent,
-    UpdatePizzaComponent,
-    PictureUploaderComponent,
-    FilterPipe,
-    CatalogComponent
   ],
   imports: [
     BrowserModule,
@@ -42,12 +41,14 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ReactiveFormsModule,
     FormsModule,
-    NgxPaginationModule,
     MDBBootstrapModule.forRoot(),
     AppRoutingModule,
     NgxUploaderModule,
+    PagesModule,
+    UserModule,
+    OrderModule,
+    PizzaModule
     InfiniteScrollModule
   ],
   providers: [PizzaService],

@@ -15,25 +15,13 @@ import 'hammerjs';
 import { MaterialModule } from './shared/material/material.module';
 import { MainMenuComponent } from './navigation/main-menu/main-menu.component';
 import { FooterComponent } from './navigation/footer/footer.component';
-<<<<<<< HEAD
-=======
-import { AddPizzaComponent } from './pizza/add-pizza/add-pizza.component';
-import { UpdatePizzaComponent } from './pizza/update-pizza/update-pizza.component';
-import { PictureUploaderComponent } from './pizza/picture-uploader/picture-uploader.component';
-import { FilterPipe } from './shared/filter.pipe';
-import { CatalogComponent } from './pizza/catalog/catalog.component';
->>>>>>> 0bd07b7cbf44fb9dc468fe6dfe397054147a2ceb
 import { PagesModule } from './navigation/pages/pages.module';
 import { UserModule } from './user/user.module';
 import { OrderModule } from './order/order.module';
 import { PizzaModule } from './pizza/pizza.module';
-<<<<<<< HEAD
 
 
 
-=======
-import { InfiniteScrollModule } from 'ngx-infinite-scroll';
->>>>>>> 0bd07b7cbf44fb9dc468fe6dfe397054147a2ceb
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,10 +43,6 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     UserModule,
     OrderModule,
     PizzaModule
-<<<<<<< HEAD
-=======
-    InfiniteScrollModule
->>>>>>> 0bd07b7cbf44fb9dc468fe6dfe397054147a2ceb
   ],
   providers: [PizzaService],
   bootstrap: [AppComponent],

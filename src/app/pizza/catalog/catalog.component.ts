@@ -12,12 +12,22 @@ import * as config from '../../config';
 export class CatalogComponent implements OnInit {
 
   _pizzaStore$: Observable<{ _pizzas: IPizza[], counter: number }>;
-  constructor(
-    private _pizzaService: PizzaService) { }
+  statusLoading = false;
+  searchText = '';
+
+  constructor(private _pizzaService: PizzaService) { }
 
   ngOnInit() {
     this._pizzaStore$ = this._pizzaService.getAllPizza();
     this._pizzaService.loadPizzaFromAPI();
+  }
+
+  onScroll() {
+    this.statusLoading = true;
+    this._pizzaService.loadPizzaFromAPI(true , () => {
+      this.statusLoading = false;
+    });
+    console.log('%c onScorll() Trigred', 'background-color:green;color:white;font-size:18px;');
   }
 
   getPictureUrl(picture) {

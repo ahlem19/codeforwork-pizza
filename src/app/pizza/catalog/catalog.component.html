@@ -1,7 +1,13 @@
 <!-- Card -->
-<div class="container withoutfooter">
+<div class="container withoutfooter" infiniteScroll [infiniteScrollDistance]="5" [infiniteScrollThrottle]="1000" (scrolled)="onScroll()">
     <h1 class="text text-primary text-center">Our Pizza Catalog</h1>
-    <div class="row" style="margin:1px;">
+    <div class="row" style="margin:3px;">
+        <div *ngIf="statusLoading">
+            <div colspan="8">
+                <span lass="spinner"><img [src]="'./assets/loader.gif'" alt="loader">Loading ...</span>
+            </div>
+        </div>
+
         <!-- Card -->
         <div class="col-md-4 card" *ngFor="let pizza of (_pizzaStore$ | async)._pizzas">
             <div class="view overlay waves-light" mdbWavesEffect>

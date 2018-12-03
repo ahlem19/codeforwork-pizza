@@ -6,12 +6,18 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserAvatarComponent } from './user-avatar/user-avatar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [SignInComponent, SignUpComponent, ProfileComponent, UserAvatarComponent],
   imports: [
     CommonModule,
-    UserRoutingModule
+    UserRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  exports: [
+    SignInComponent
   ]
 })
 export class UserModule { }

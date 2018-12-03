@@ -13,6 +13,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 import { PizzaModule } from '../../pizza/pizza.module';
 import { MaterialModule } from 'src/app/shared/material/material.module';
+import { UserModule } from 'src/app/user/user.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MaterialModule } from 'src/app/shared/material/material.module';
   imports: [
     CommonModule,
     PizzaModule,
-    MaterialModule
+    MaterialModule,
+    UserModule
   ],
   exports: [
     IntroPageComponent,

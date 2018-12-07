@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { IPizza } from '../../models/pizza';
+import { IPizza } from '../../shared/models/pizza';
 
 @Component({
   selector: 'app-update-pizza',

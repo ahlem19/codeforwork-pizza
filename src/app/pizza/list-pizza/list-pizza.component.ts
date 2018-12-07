@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { PizzaService } from 'src/app/services/pizza.service';
+import { PizzaService } from '../services/pizza.service';
 import { AddPizzaComponent } from '../add-pizza/add-pizza.component';
 import { UpdatePizzaComponent } from '../update-pizza/update-pizza.component';
-import { IPizza } from 'src/app/models/pizza';
+import { IPizza } from '../../config';
 import { Observable } from 'rxjs';
 import * as config from '../../config';
 

@@ -21,13 +21,13 @@
         <tbody *ngIf="(_pizzaStore$ | async).counter === 0">
             <tr>
                 <th colspan="8">
-                    <h1 class="text text-primary">We dont't have yet Pizza in our Menu</h1>
+                    <h1 class="text text-primary">We dont't have Pizza yet in our Menu</h1>
                 </th>
             </tr>
 
         </tbody>
         <tbody>
-            <tr mdbTableCol *ngFor="let pizza of tmplPizzas|filter:searchText ; let i = index ">
+            <tr mdbTableCol *ngFor="let pizza of tmplPizzas|pizzaFilter:searchText ; let i = index ">
 
 
                 <th scope="row">

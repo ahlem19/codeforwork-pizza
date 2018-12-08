@@ -2,7 +2,7 @@
     <p class="h4 mb-4 ">Sign in</p>
     <input type="email " id="defaultLoginFormEmail " class="form-control mb-4 " placeholder="E-mail " formControlName="email" required [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
     <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-        <div *ngIf="f.username.errors.required">email is required</div>
+        <div *ngIf="f.email.errors.required">email is required</div>
     </div>
 
     <input type="password" id="defaultLoginFormPassword " class="form-control mb-4 " placeholder="Password " formControlName="password" required [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />

@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { UploadOutput, UploadInput, UploadFile, humanizeBytes, UploaderOptions, UploadStatus } from 'ngx-uploader';
-import { PizzaService } from 'src/app/services/pizza.service';
+import { PizzaService } from '../services/pizza.service';
 
 @Component({
   selector: 'app-picture-uploader',

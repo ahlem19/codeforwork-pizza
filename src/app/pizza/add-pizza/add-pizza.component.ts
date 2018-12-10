@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
-import { PizzaService } from 'src/app/services/pizza.service';
+
 import { Router } from '@angular/router';
-import { IPizza } from '../../models/pizza';
+import { IPizza } from 'src/app/shared/models/pizza';
+import { PizzaService } from '../services/pizza.service';
+
 
 @Component({
   selector: 'app-add-pizza',

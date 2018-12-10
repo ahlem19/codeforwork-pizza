@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IPizza } from 'src/app/models/pizza';
-import { PizzaService } from 'src/app/services/pizza.service';
+import { IPizza } from '../../shared/models/pizza';
+import { PizzaService } from '../services/pizza.service';
 
 import * as config from '../../config';
 @Component({

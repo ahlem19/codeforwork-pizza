@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import * as url from '../config.js';
+import * as url from '../../config.js';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { IPizza } from '../models/pizza';
+import { IPizza } from '../../shared/models/pizza';
 interface PizzaStore {
   _pizzas: IPizza[];
   counter: number;

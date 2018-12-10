@@ -9,6 +9,7 @@ import { AboutUsPageComponent } from './navigation/pages/about-us-page/about-us-
 import { UserModule } from './user/user.module';
 import { OrderModule } from './order/order.module';
 import { ListPizzaComponent } from './pizza/list-pizza/list-pizza.component';
+import { AuthGuard } from './user/_guard/auth.guard';
 
 
 const routes: Routes = [
@@ -18,28 +19,34 @@ const routes: Routes = [
   },
   {
     path: 'pizza-menu',
-    component: ListPizzaComponent
+    component: ListPizzaComponent,
+    canActivate: [AuthGuard]
   },
 
   {
     path: 'order',
-    loadChildren: './order/order.module#OrderModule'
+    loadChildren: './order/order.module#OrderModule',
+    canActivate: [AuthGuard]
   },
   {
     path: 'catalog',
-    component: CatalogPageComponent
+    component: CatalogPageComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'dashboard',
-    component: DashboardPageComponent
+    component: DashboardPageComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'profile',
-    loadChildren: './user/user.module#UserModule'
+    loadChildren: './user/user.module#UserModule',
+    canActivate: [AuthGuard]
   },
   {
     path: 'contact',
-    component: ContactPageComponent
+    component: ContactPageComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'aboutus',
@@ -47,13 +54,9 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'intro'
-  },
-  {
-    path: '',
-    redirectTo: '',
-    pathMatch: 'full'
+    redirectTo: ''
   }
+
 ];
 
 @NgModule({

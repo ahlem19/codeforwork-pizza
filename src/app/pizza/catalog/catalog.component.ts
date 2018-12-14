@@ -22,16 +22,11 @@ export class CatalogComponent implements OnInit {
     this._pizzaService.loadPizzaFromAPI();
   }
 
-  onScroll() {
-    this.statusLoading = true;
-    this._pizzaService.loadPizzaFromAPI(true , () => {
-      this.statusLoading = false;
-    });
-    console.log('%c onScorll() Trigred', 'background-color:green;color:white;font-size:18px;');
-  }
 
   getPictureUrl(picture) {
-    return `${config.local.rootUrl}ressources/pizza-pictures/${picture}`;
+    return picture ?
+       `${config.local.rootUrl}ressources/pizza-pictures/${picture}`
+      : `${config.local.rootUrl}ressources/pizza-pictures/default.jpg` ;
   }
 
 }

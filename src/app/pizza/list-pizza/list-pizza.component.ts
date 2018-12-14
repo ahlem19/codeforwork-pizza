@@ -29,13 +29,6 @@ export class ListPizzaComponent implements OnInit {
   constructor(private _pizzaService: PizzaService) {
   }
 
-  onScroll() {
-    this.statusLoading = true;
-    this._pizzaService.loadPizzaFromAPI(true , () => {
-      this.statusLoading = false;
-    });
-    console.log('%c onScorll() Trigred', 'background-color:green;color:white;font-size:18px;');
-  }
   ngOnInit() {
     this._pizzaStore$ = this._pizzaService.getAllPizza();
     this._pizzaService.loadPizzaFromAPI();
@@ -70,7 +63,9 @@ export class ListPizzaComponent implements OnInit {
   }
 
   getPictureUrl(picture) {
-    return `${config.local.rootUrl}ressources/pizza-pictures/${picture}`;
+    return picture ?
+       `${config.local.rootUrl}ressources/pizza-pictures/${picture}`
+      : `${config.local.rootUrl}ressources/pizza-pictures/default.jpg` ;
   }
 
   refresh(event) {

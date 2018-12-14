@@ -81,16 +81,10 @@ export class PizzaService {
       );
   }
 
-  loadPizzaFromAPI(isnext: boolean = false , cb= () => {}) {
-    if (isnext) {this.nextPage += 5; }
-    this._http.get(`${url.local.rootUrl}pizza?nextPage=${this.nextPage}`).subscribe(
+  loadPizzaFromAPI() {
+    this._http.get(`${url.local.rootUrl}pizza`).subscribe(
       (data: IPizza[]) => {
-         cb();
-        if (this.nextPage === 0) {
           this._pizzaStore._pizzas = data;
-        } else {
-          this._pizzaStore._pizzas = this._pizzaStore._pizzas.concat(data);
-        }
         const pizStor = {
           _pizzas: Object.assign({}, this._pizzaStore)._pizzas,
           counter: this._pizzaStore._pizzas.length

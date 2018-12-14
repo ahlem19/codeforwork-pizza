@@ -1,4 +1,4 @@
-<div class="container withoutfooter" style="padding-top: 77px;" infiniteScroll [infiniteScrollDistance]="5" [infiniteScrollThrottle]="1000" (scrolled)="onScroll()">
+<div class="container withoutfooter" style="padding-top: 77px;">
     <h3 style="text-align: center;padding-top:33px !important;">
         CFK Pizza MENU
         <mat-icon [matBadge]="(_pizzaStore$ | async).counter" matBadgeOverlap="false"></mat-icon>
@@ -21,7 +21,7 @@
         <tbody *ngIf="(_pizzaStore$ | async).counter === 0">
             <tr>
                 <th colspan="8">
-                    <h1 class="text text-primary">We dont't have Pizza yet in our Menu</h1>
+                    <h1 class="text text-primary">We dont't have yet Pizza in our Menu</h1>
                 </th>
             </tr>
 
@@ -42,15 +42,6 @@
                 <th scope="row" class="waves-effect"><span class="fa fa-trash text-danger" (click)="deletePizza(pizza._id)"></span></th>
                 <th scope="row" class="waves-effect"><span class="fa fa-edit" (click)="showUpdateForm(pizza)"></span></th>
             </tr>
-        </tbody>
-
-        <tbody *ngIf="statusLoading">
-            <tr>
-                <th colspan="8">
-                    <span lass="spinner"><img [src]="'./assets/loader.gif'" alt="loader">Loading ...</span>
-                </th>
-            </tr>
-
         </tbody>
     </table>
     <button type="button" mdbBtn color="primary" mdbWavesEffect class="float-right plusBtn fixed-bottom" (click)="showAddForm()">
